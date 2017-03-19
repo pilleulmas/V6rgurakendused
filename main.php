@@ -31,19 +31,33 @@
     
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="app.js"></script>
+	
+	<div id="vorm">
+		<form method="post" action="sisestus.php" name="sisu" id="f1">
+			<input type="text" name="nimi" placeholder="Palun sisesta oma nimi" value="<?php if (isset($name)) echo $name;?>"/>
+			<span class="error">* <?php if (isset($nameErr)) echo $nameErr;?></span><br/>
+			<textarea name="tagasiside" cols="40" rows="20" placeholder="Sisesta oma arvamus"><?php if (isset($sisu)) echo $sisu;?></textarea>
+			<span class="error">* <?php if (isset($sisuErr)) echo $sisuErr;?></span><br/>
+			<input type="submit" value="Send" form="f1"/>
+		</form>
+	</div>
+	<div id="kuva">
+		<?php include 'p2ring.php';?>
+	</div>
+	
 	<?php echo phpversion() ?>
 	<?php 
     $host = "localhost";
     $user = "test";
     $pass = "t3st3r123";
     $db = "test";
-
     $l = mysqli_connect($host, $user, $pass, $db);
     mysqli_query($l, "SET CHARACTER SET UTF8") or
             die("Error, ei saa andmebaasi charsetti seatud");
     
     mysqli_close($l);
 	?>
+	
 
 <p>
  <a href="http://validator.w3.org/check?uri=referer">
